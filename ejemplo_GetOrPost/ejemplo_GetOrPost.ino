@@ -15,7 +15,7 @@ const char *password = "espaciomiscela";
 
 ESP8266WebServer server (80);
 
-void handleRoot() {
+void miWeb() {
 	String message = "Recibido:\n\n";
   message += "Direccion: ";
   message += server.uri();
@@ -58,7 +58,7 @@ void setup () {
 	Serial.print ( "con la IP: " );
 	Serial.println ( WiFi.localIP() );
 
-	server.on ( "/", handleRoot );
+	server.on ( "/", miWeb );
 	server.begin();
 	Serial.println ( "HTTP server iniciado" );
 }

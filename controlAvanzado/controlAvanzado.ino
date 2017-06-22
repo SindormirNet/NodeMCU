@@ -1,3 +1,4 @@
+#include <Servo.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 
@@ -6,7 +7,7 @@ const char* ssid = "sindormir.net";
 const char* password = "espaciomiscela";
 
 ESP8266WebServer server(80);
-
+Servo miServo;
 
 void miWeb(void) { 
   String web = "<!DOCTYPE HTML><html><head><title>Control con Botones</title></head><body>";
@@ -21,29 +22,38 @@ void miWeb(void) {
   
   server.method() == HTTP_GET;  
 
-  String led = server.arg(0);
-  int miLed = led.toInt();
+  //Guardamos el argumento en una variable y la convertimos en un int
+  String parametro = server.arg(0);
+  int miParametro = parametro.toInt();
 
-  if(miLed == 1){
+//Comprobamos si el usuario nos ha enviado una orden para los led (si el nombre del argumento es led) o para el servo (si es angulo)  
+if(server.argName(0)=="led"){
+  //Si el nombre del argumento es led realizamos las acciones de control de los led
+  if(miParametro == 1){
     digitalWrite(D5,HIGH);
-  }else if(miLed == 2){
+  }else if(miParametro == 2){
     digitalWrite(D6,HIGH);
   }else{
     digitalWrite(D5,LOW);
     digitalWrite(D6,LOW);
   }
-  
+}else if(server.argName(0)=="angulo"){
+  //Si el nombre del argumento es angulo la orden es para el servo y la realizamos aquí. 
+  miServo.write(miParametro);
+}
   delay(1);
 }
 
 
 void setup() {
-  // put your setup code here, to run once:
+  // Configuraciones e inicializaciones. 
+  miServo.attach(D2);
+  miServo.write(90);
   Serial.begin(115200);
   WiFi.begin(ssid, password);
   Serial.println("");
-
-  // Wait for connection
+  
+  // Esperamos a estar conectados. 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
