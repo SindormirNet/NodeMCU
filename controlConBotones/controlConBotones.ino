@@ -13,8 +13,6 @@ void miWeb(void) {
   web = web += "<form action=\"\">";
   web = web += "<input type=\"submit\" value=\"1\" name=\"led\"/>";
   web = web += "<input type=\"submit\" value=\"2\" name=\"led\"/>";
-  web = web += "<input type=\"range\" min=\"0\" max=\"180\" step=\"1\" name=\"angulo\"/>";
-  web = web += "<input type=\"submit\"/>";
   web = web += "</form></body></html>";
 
   server.send(200, "html",web);  
