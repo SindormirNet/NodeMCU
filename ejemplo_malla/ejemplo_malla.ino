@@ -2,13 +2,13 @@
 #include <ESP8266WiFiMesh.h>
 
 #define frecuencia 33
-String miTurno = "2";
+int miTurno = 2;
 
 String manageRequest(String request){
-  int turno;
+  int turno = request.toInt();
   
   //Si recibimos nuestro turno mandamos el sonido 
-  if(request == miTurno){
+  if(turno == miTurno){
     analogWrite(D3, frecuencia);
   }else{
     //Si no es nuestro turno paramos el sonido 
@@ -16,7 +16,7 @@ String manageRequest(String request){
   }
 
   //Realizamos un cast para poder sumarle uno al valor recibido
-  turno = request.toInt();
+  
   turno = turno + 1;
 
   //Realizamos otro Cast a String para 
@@ -34,5 +34,6 @@ void setup() {
 
 void loop() {
   mesh_node.acceptRequest();
-  //mesh_node.attemptScan(response);
+  String response = "Hola!";
+  mesh_node.attemptScan(response);
 }
