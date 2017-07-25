@@ -20,3 +20,7 @@ Mas info: https://sindormir.net/curso-esp8266-nodemcu
     * Entradas Analogicas
     * PWM
     * Programación remota
+
+## Impartido por: 
+
+![Sindormir.net](https://sindormir.net/sites/sindormir.net/files/logo-sindormir-transparente-ajustado.png)
