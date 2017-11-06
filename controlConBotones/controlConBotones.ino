@@ -10,10 +10,10 @@ ESP8266WebServer server(80);
 
 void miWeb(void) { 
   String web = "<!DOCTYPE HTML><html><head><title>Control con Botones</title></head><body>";
-  web = web += "<form action=\"\">";
-  web = web += "<input type=\"submit\" value=\"1\" name=\"led\"/>";
-  web = web += "<input type=\"submit\" value=\"2\" name=\"led\"/>";
-  web = web += "</form></body></html>";
+  web = web + "<form action=\"\">";
+  web = web + "<input type=\"submit\" value=\"1\" name=\"led\"/>";
+  web = web + "<input type=\"submit\" value=\"2\" name=\"led\"/>";
+  web = web + "</form></body></html>";
 
   server.send(200, "html",web);  
   

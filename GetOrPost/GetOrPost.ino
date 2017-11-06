@@ -15,29 +15,30 @@ const char *password = "espaciomiscela";
 
 ESP8266WebServer server (80);
 
-void miWeb() {
-	String message = "Recibido:\n\n";
-  message += "Direccion: ";
-  message += server.uri();
-  message += "\nMetodo: ";
-  
-  //Comprobar si recibimos los datos por GET o por POST
-  if( server.method() == HTTP_GET ){
-    message +="GET";
-  }else{
-    message +="POST";
-  }
-  
-  message += "\nArgumentos: ";
-  message += server.args();
-  message += "\n";
+void miWeb() { 
+  String web = "<!DOCTYPE HTML><html><body><form  action=''><input type=’text’  name='nombreDeMiCaja'/><input type='submit'/><br>";
+  web + "Recibido:<br><br>";
+  web + "Direccion: ";
+  web + server.uri();
+    web + "<br>Metodo: ";
+      //Comprobar si recibimos los datos por GET o por POST
+    if( server.method() == HTTP_GET ){
+       web + "GET";
+    }else{
+       web + "POST";
+    }  
+    web + "<br>Argumentos: ";
+    web + server.args();
+    web + "<br>";
 
-  for ( int i = 0; i < server.args(); i++ ) {
-    message += " " + server.argName ( i ) + ": " + server.arg ( i ) + "\n";
-  }
+    for ( int i = 0; i < server.args(); i++ ) {
+       web + " " + server.argName ( i ) + ": " + server.arg ( i ) +         "<br>";
+    }
 
-  server.send ( 200, "text/plain", message );
+    web + "</form></body></html>";
+    server.send ( 200, "html", web );
 }
+
 
 
 
