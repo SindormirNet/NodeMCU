@@ -1,0 +1,36 @@
+<style type="text/css">
+      h2{ font-size: 30px; }
+     header{
+       background: #FF0000;
+       padding: 20px;      
+       text-align: center;
+       color: #000000;
+     }
+     nav{ margin: 2% auto 2% 40%;}
+     nav a{
+       text-decoration: none;
+       padding-right: 40px;
+       color: black;
+     }
+     nav a:visited{color: black;}
+     section{
+       width: 80%;
+       margin: 8% auto;
+       background-color: white;
+       padding: 8px;
+     }
+     article{
+       border-bottom: 3px black solid;
+       background-color: whitesmoke;
+       padding: 5px;
+     }
+     span{ font-size: 9px; }
+     footer{
+       background-color: #FF0000;
+       margin-top: 5px;
+       text-align: center;    
+       color: white;
+       padding: 5px;
+       color: #000000;
+     }
+     </style>
